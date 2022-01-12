@@ -9,7 +9,8 @@ Use cases
 - Create module in course
 - Create lecture in module
 - Change order of a lecture in a module
-- Change order of a module in a course?
+- Change order of a module in a course
+- Move a lecture to a different module
 - Update user
 - Update course
 - Update module
