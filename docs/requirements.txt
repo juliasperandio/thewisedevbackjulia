@@ -7,9 +7,9 @@ Use cases
 - Select lecture in course
 
 - Create course
-- Create module in course
-- Create lecture in module
-- Create further material in lecture
+- Add module to course
+- Add lecture to module
+- Add further material to lecture
 - Change order of a lecture in a module
 - Change order of a module in a course
 - Move a lecture to a different module
