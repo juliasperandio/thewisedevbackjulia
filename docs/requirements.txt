@@ -2,12 +2,14 @@ Use cases
 - Sign up
 - Sign in
 - Enroll in a course
+- Select course to view
 - Mark lecture as concluded
 - Select lecture in course
 
 - Create course
 - Create module in course
 - Create lecture in module
+- Create further material in lecture
 - Change order of a lecture in a module
 - Change order of a module in a course
 - Move a lecture to a different module
