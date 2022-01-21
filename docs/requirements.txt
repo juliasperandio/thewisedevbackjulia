@@ -1,4 +1,5 @@
 Use cases
+Role: Student
 - Sign up
 - Sign in
 - Enroll in a course
@@ -6,6 +7,8 @@ Use cases
 - Mark lecture as concluded
 - Select lecture in course
 
+Role: Admin
+- Sign in
 - Create course
 - Add module to course
 - Add lecture to module
