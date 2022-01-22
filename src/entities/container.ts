@@ -1,5 +1,4 @@
 import { Part } from './part'
-import { moveInArray } from './util'
 
 export class Container<T extends Part> {
   private readonly parts: Array<T> = []
@@ -35,4 +34,9 @@ export class Container<T extends Part> {
     const positionInArray = this.position(part) - 1
     this.parts.splice(positionInArray, 1)
   }
+}
+
+function moveInArray<T> (array: Array<T>, from: number, to: number): void {
+  const element = array.splice(from, 1)[0]
+  array.splice(to, 0, element)
 }
