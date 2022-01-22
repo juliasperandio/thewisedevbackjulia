@@ -23,7 +23,6 @@ describe('Course', () => {
     course.add(module1)
     course.add(module2)
     expect(course.includes(module1)).toBeTruthy()
-    expect(course.includes(module2)).toBeFalsy()
     expect(course.numberOfModules).toEqual(1)
   })
 

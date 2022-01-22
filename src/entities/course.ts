@@ -1,45 +1,19 @@
 import { Lecture } from '.'
+import { Container } from './container'
 import { Module } from './module'
-import { moveInArray } from './util'
 
-export class Course {
-  private modules: Array<Module> = []
+export class Course extends Container<Module> {
   public reference: string
   public description: string
 
   constructor (reference: string, description: string) {
+    super()
     this.reference = reference
     this.description = description
   }
 
   get numberOfModules (): number {
-    return this.modules.length
-  }
-
-  add (module: Module): void {
-    if (!this.includesModuleWithSameName(module)) this.modules.push(module)
-  }
-
-  private includesModuleWithSameName (module: Module): boolean {
-    return this.modules.find(mod => mod.name === module.name) !== undefined
-  }
-
-  includes (module: Module): boolean {
-    return this.modules.includes(module)
-  }
-
-  move (module: Module, to: number): void {
-    if (to > this.modules.length || to < 1) return
-    const from = this.position(module)
-    moveInArray(this.modules, from - 1, to - 1)
-  }
-
-  position (module: Module): number {
-    const moduleInCourse = this.modules.find(mod => mod.name === module.name)
-    if (moduleInCourse === undefined) {
-      return undefined
-    }
-    return this.modules.indexOf(moduleInCourse) + 1
+    return super.numberOfParts
   }
 
   moveLecture (lecture: Lecture, fromModule: Module, toModule: Module, position: number): void {

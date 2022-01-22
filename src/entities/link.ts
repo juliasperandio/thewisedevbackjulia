@@ -8,4 +8,8 @@ export class Link implements Material {
     this.title = title
     this.url = url
   }
+
+  equals (link: Link): boolean {
+    return this.title === link.title
+  }
 }

@@ -8,4 +8,8 @@ export class Pdf implements Material {
     this.title = title
     this.url = url
   }
+
+  equals (pdf: Pdf): boolean {
+    return this.title === pdf.title
+  }
 }
