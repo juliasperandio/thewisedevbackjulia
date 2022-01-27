@@ -13,10 +13,6 @@ export class Module implements Part {
     return this.lectures.numberOfParts
   }
 
-  get numberOfModules (): number {
-    return this.lectures.numberOfParts
-  }
-
   add (lecture: Lecture): void {
     this.lectures.add(lecture)
   }
