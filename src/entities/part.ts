@@ -1,3 +1,3 @@
-export interface Part {
-  equals (part: Part): boolean
+export interface Element {
+  equals (part: Element): boolean
 }

@@ -1,5 +1,5 @@
-import { Part } from './part'
+import { Element } from './part'
 
-export interface Material extends Part {
+export interface Material extends Element {
   url: string
 }
