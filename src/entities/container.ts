@@ -1,5 +1,6 @@
 import { Either, left, right } from '../shared/either'
 import { ExistingElementError } from './errors/existing-element-error'
+import { InvalidPositionError } from './errors/invalid-position-error'
 import { UnexistingElementError } from './errors/unexisting-element-error'
 import { Element } from './part'
 
@@ -26,7 +27,7 @@ export class Container<T extends Element> {
   }
 
   move (element: T, to: number): Either<UnexistingElementError, void> {
-    if (to > this.elements.length || to < 1) return
+    if (to > this.elements.length || to < 1) return left(new InvalidPositionError())
     if(!this.includes(element)) return left(new UnexistingElementError())
     const from = this.position(element).value as number
     return right(moveInArray(this.elements, from - 1, to - 1))

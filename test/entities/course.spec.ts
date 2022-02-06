@@ -1,5 +1,6 @@
 import { Course, Module, Lecture } from '../../src/entities'
 import { ExistingElementError } from '../../src/entities/errors/existing-element-error'
+import { InvalidPositionError } from '../../src/entities/errors/invalid-position-error'
 import { UnexistingElementError } from '../../src/entities/errors/unexisting-element-error'
 
 describe('Course', () => {
@@ -96,7 +97,9 @@ describe('Course', () => {
     course.add(courseOverviewModule)
     course.add(gitModule)
 
-    course.move(fundamentalsModule, 10)
+    const error = course.move(fundamentalsModule, 10).value as Error
+    expect(error).toBeInstanceOf(InvalidPositionError)
+    expect(error.message).toEqual('Invalid position.')
 
     expect(course.position(fundamentalsModule).value).toBe(1)
     expect(course.position(courseOverviewModule).value).toBe(2)
@@ -121,7 +124,8 @@ describe('Course', () => {
     course.add(courseOverviewModule)
     course.add(gitModule)
 
-    course.move(courseOverviewModule, -1)
+    const error = course.move(courseOverviewModule, -1).value as Error
+    expect(error).toBeInstanceOf(InvalidPositionError)
 
     expect(course.position(fundamentalsModule).value).toBe(1)
     expect(course.position(courseOverviewModule).value).toBe(2)
