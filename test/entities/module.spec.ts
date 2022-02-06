@@ -33,16 +33,9 @@ describe('Module', () => {
 
     module.move(branching, 3)
 
-    expect(module.position(commiting)).toBe(1)
-    expect(module.position(pushing)).toBe(2)
-    expect(module.position(branching)).toBe(3)
-  })
-
-  it('should handle unexisting lecture', () => {
-    const module = new Module('Fundamentals')
-    const branching: Lecture = new Lecture('Branching', 'https://youtube.com/branching')
-
-    expect(module.position(branching)).toBeUndefined()
+    expect(module.position(commiting).value).toBe(1)
+    expect(module.position(pushing).value).toBe(2)
+    expect(module.position(branching).value).toBe(3)
   })
 
   it('should handle exceeding position while rearranging', () => {
@@ -57,9 +50,9 @@ describe('Module', () => {
 
     module.move(branching, 10)
 
-    expect(module.position(branching)).toBe(1)
-    expect(module.position(commiting)).toBe(2)
-    expect(module.position(pushing)).toBe(3)
+    expect(module.position(branching).value).toBe(1)
+    expect(module.position(commiting).value).toBe(2)
+    expect(module.position(pushing).value).toBe(3)
   })
 
   it('should handle negative position while rearranging', () => {
@@ -74,9 +67,9 @@ describe('Module', () => {
 
     module.move(branching, 0)
 
-    expect(module.position(branching)).toBe(1)
-    expect(module.position(commiting)).toBe(2)
-    expect(module.position(pushing)).toBe(3)
+    expect(module.position(branching).value).toBe(1)
+    expect(module.position(commiting).value).toBe(2)
+    expect(module.position(pushing).value).toBe(3)
   })
 
   it('should be able to remove a lecture', () => {
@@ -94,6 +87,13 @@ describe('Module', () => {
     module.add(commiting)
     const error = module.remove(branching).value as Error
     expect(module.numberOfLectures).toEqual(1)
+    expect(error).toBeInstanceOf(UnexistingElementError)
+  })
+
+  it('should not be able to determine position of unexisting lecture', () => {
+    const module = new Module('Fundamentals')
+    const lecture: Lecture = new Lecture('Branching', 'https://youtube.com/1234')
+    const error = module.position(lecture).value as Error
     expect(error).toBeInstanceOf(UnexistingElementError)
   })
 })
