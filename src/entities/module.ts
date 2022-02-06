@@ -1,6 +1,7 @@
 import { Either } from '../shared/either'
 import { Container } from './container'
 import { ExistingElementError } from './errors/existing-element-error'
+import { UnexistingElementError } from './errors/unexisting-element-error'
 import { Lecture } from './lecture'
 import { Element } from './part'
 
@@ -31,8 +32,8 @@ export class Module implements Element {
     return this.lectures.position(lecture)
   }
 
-  remove (lecture: Lecture): void {
-    this.lectures.remove(lecture)
+  remove (lecture: Lecture): Either<UnexistingElementError, void> {
+    return this.lectures.remove(lecture)
   }
 
   equals (module: Module): boolean {
